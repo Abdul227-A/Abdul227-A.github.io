@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endi & Dahniar</title>
+    <link rel="stylesheet" href="sweetalert/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="foto/style.css">
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo"><i>ENDI<span>DAHNIAR</span> </i></a>
+        <i class='bx bx-menu' id="menu-icon"></i>
+        
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#Story">Story</a>
+            <a href="#galery">Galery</a> 
+        </nav>
+    </header>
+
+    <section class="home" id="home">
+       <h1>Endi & Dahniar</h1>
+    </section>
+
+    <section class="content" id="Story">
+        <h2 class="heading">Story</h2>
+        <div class="team-container">
+            <div class="team-box">
+                <img src="foto/DSC06166.JPG" alt="">  
+            </div>
+
+            <div class="team-box">
+              <img src="foto/DSC06171.JPG" alt="">
+            </div>
+            
+            <div class="team-box">
+             <img src="foto/DSC06192.JPG" alt="">
+             <h1 class="spasi">Endi & Dahniar</h1>
+            </div>  
+            
+        </div>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Di tiap hembusan angin senja, namamu terukir dalam hatiku seperti bintang yang tak pernah pudar, menghiasi langit malam yang kelam. Dalam setiap detak jantungku, ada melodi cinta yang hanya untukmu, seperti simfoni yang tak pernah usai, mengalun indah dalam keheningan. Kau adalah cahaya di gelap malam, penuntun di setiap langkahku, seperti lilin yang tak pernah padam, menerangi jalan cintaku padamu. Di antara ribuan kata yang terucap, ada satu yang selalu tersimpan, seperti rahasia yang tak terkatakan, kau adalah alasan di balik senyumku. Setiap detik bersamamu adalah anugerah yang tak ternilai, seperti permata di dasar lautan, yang selalu kujaga dalam lubuk hati. Dengan segala cinta yang kumiliki, kubisikkan namamu dalam doa, seperti nyanyian cinta yang abadi, hanya untukmu, kekasih hatiku.</p>
+        
+    </section>
+
+    <div class="home-content-slider">
+        <div class="slider-container">
+            <div class="slider">
+                <img src="foto/DSC06421.JPG" class="slide blur">
+                <img src="foto/DSC06139.JPG" class="slide active">
+                <img src="foto/DSC06423.JPG" class="slide blur">
+            </div>
+            <button id="prev" type="hidden">Previous</button>
+            <button id="next" type="hidden">Next</button>
+        </div>
+    
+    </div>
+
+    <section class="foto" id="galery">
+        <h2 class="heading">Foto<span>Kenangan</span></h2>
+        <div class="item-container">
+            <div class="item-box">
+                <img src="foto/DSC06244.JPG">
+            </div>
+            <div class="item-box">
+                <img src="foto/DSC06215.JPG">
+            </div>
+            <div class="item-box">
+                <img src="foto/DSC06247.JPG">
+            </div>
+            <div class="item-box">
+                <img src="foto/DSC06173.JPG">
+            </div>
+            <div class="item-box">
+                <img src="foto/DSC06239.JPG">
+            </div>
+            <div class="item-box">
+                <img src="foto/DSC06192.JPG">
+            </div>
+            <div class="item-box">
+                <img src="foto/DSC06196.JPG">
+            </div>
+            <div class="item-box">
+                <img src="foto/DSC06204.JPG">
+            </div>
+            <div class="item-box">
+                <img src="foto/DSC06209.JPG">
+            </div>
+        </div>
+        <div class="container2">
+            <div class="item-box-solo">
+                <img src="foto/DSC08223.JPG" alt="">
+            </div>
+            <div class="item-box-solo">
+                <img src="foto/DSC08290.JPG" alt="">
+            </div>
+            <div class="item-box-solo-s" >
+                <img src="foto/DSC08241.JPG" alt="">
+            </div>
+        </div> 
+    </section>
+
+    <div class="terimakasih">
+        <h1><span>TERIMAKASIH</span></h1>
+    </div>
+
+      
+
+
+    <audio id="background-music" controls>
+        <source src="wedding.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    // Show SweetAlert2 confirmation dialog when the page loads
+    Swal.fire({
+        title: 'Apakah mau memutar lagu?',
+        text: "Klik 'Ya' untuk memutar musik atau ketuk diluar untuk melewatinya.",
+        icon: 'question',
+        confirmButtonText: 'Ya',
+        customClass: {
+            confirmButton: 'swal2-confirm-btn',
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Play the music if 'Ya' is clicked
+            document.getElementById('background-music').play();
+        } else {
+            // Optional: Handle the case where 'Tidak' is clicked
+            console.log('User chose not to play the music.');
+        }
+    });
+});
+
+        const slides = document.querySelectorAll('.slide');
+let currentIndex = 1; // Index of the active slide
+let interval;
+
+document.getElementById('prev').addEventListener('click', showPrevSlide);
+document.getElementById('next').addEventListener('click', showNextSlide);
+
+function showPrevSlide() {
+    clearInterval(interval); // Reset the interval
+    slides[currentIndex].classList.remove('active');
+    slides[currentIndex].classList.add('blur');
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    slides[currentIndex].classList.remove('blur');
+    slides[currentIndex].classList.add('active');
+    updateBlurSlides();
+    startSlider(); // Restart the interval
+}
+
+function showNextSlide() {
+    clearInterval(interval); // Reset the interval
+    slides[currentIndex].classList.remove('active');
+    slides[currentIndex].classList.add('blur');
+    currentIndex = (currentIndex + 1) % slides.length;
+    slides[currentIndex].classList.remove('blur');
+    slides[currentIndex].classList.add('active');
+    updateBlurSlides();
+    startSlider(); // Restart the interval
+}
+
+function updateBlurSlides() {
+    const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+    const nextIndex = (currentIndex + 1) % slides.length;
+
+    slides.forEach((slide, index) => {
+        if (index !== currentIndex && index !== prevIndex && index !== nextIndex) {
+            slide.classList.add('blur');
+        }
+    });
+}
+
+function startSlider() {
+    interval = setInterval(showNextSlide, 3000); // Change slide every 3 seconds
+}
+
+// Start the slider when the page loads
+window.onload = startSlider;
+
+    </script>
+    
+</body>
+</html>
